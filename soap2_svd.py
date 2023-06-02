@@ -127,7 +127,7 @@ if False:
 
 
 # Try a waterfall-style plot of spectra at a few phases.
-if False:
+if True:
     fig = figure(figsize=(8, 4))
     # This breaks after mpl-3.6; use add_subplot instead:
     # ax = fig.gca(projection='3d')
@@ -152,8 +152,11 @@ if False:
         # ys[0], ys[-1] = 0, 0
         verts.append(list(zip(dynspec.lambdas, ys)))
 
-    poly = PolyCollection(verts, facecolors=[cc('r'), cc('g'), cc('b'),
-                                             cc('y')])
+    def cc2(arg):
+        return mcolors.to_rgba(arg, alpha=0.6)
+
+    poly = PolyCollection(verts, facecolors=[cc2('r'), cc2('g'), cc2('b'),
+                                             cc2('y')])
     poly.set_alpha(0.7)
     ax.add_collection3d(poly, zs=zs, zdir='y')
 
